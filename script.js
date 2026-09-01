@@ -10,6 +10,21 @@ function showTab(id, button){
             section.classList.add("hidden");
         });
 
+   const display = document.getElementById("display");
+
+function addValue(value) {
+    display.value += value;
+}
+
+function clearCalc() {
+    display.value = "";
+}
+
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+   
+
     document
         .getElementById(id)
         .classList.remove("hidden");
