@@ -15,6 +15,19 @@ function showTab(id, button){
 function addValue(value) {
     display.value += value;
 }
+   const display = document.getElementById("display");
+
+// Never allow the calculator display to open the keyboard
+display.addEventListener("focus", function () {
+    this.blur();
+});
+
+// Prevent touch from focusing the display
+display.addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    this.blur();
+}, { passive: false });
+   
 
 function clearCalc() {
     display.value = "";
