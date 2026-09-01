@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EE Calculator Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <h1>⚡ EE Calculator Pro</h1>
+        <p>Scientific Calculator + Electrical Engineering Formula Calculator</p>
+    </header>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab active"
+                onclick="showTab('scientific', this)">
+            Scientific
+        </button>
+
+        <button class="tab"
+                onclick="showTab('formula', this)">
+            Formula Calculator
+        </button>
+
+    </div>
+
+
+    <!-- =========================================
+         SCIENTIFIC CALCULATOR
+    ========================================== -->
+
+    <section id="scientific" class="section">
+
+        <input
+            id="display"
+            class="display"
+            placeholder="Example: sin 45"
+            autocomplete="off"
+        >
+
+        <div class="calc-grid">
+
+            <button class="danger" onclick="clearCalc()">AC</button>
+            <button class="orange" onclick="deleteLast()">DEL</button>
+            <button onclick="addValue('(')">(</button>
+            <button onclick="addValue(')')">)</button>
+            <button class="blue" onclick="addValue('/')">÷</button>
+
+            <button onclick="addValue('sin ')">sin</button>
+            <button onclick="addValue('cos ')">cos</button>
+            <button onclick="addValue('tan ')">tan</button>
+            <button onclick="addValue('√')">√</button>
+            <button class="blue" onclick="addValue('*')">×</button>
+
+            <button onclick="addValue('log ')">log</button>
+            <button onclick="addValue('ln ')">ln</button>
+            <button onclick="addValue('π')">π</button>
+            <button onclick="addValue('^')">xʸ</button>
+            <button class="blue" onclick="addValue('-')">−</button>
+
+            <button onclick="addValue('7')">7</button>
+            <button onclick="addValue('8')">8</button>
+            <button onclick="addValue('9')">9</button>
+            <button onclick="addValue('%')">%</button>
+            <button class="blue" onclick="addValue('+')">+</button>
+
+            <button onclick="addValue('4')">4</button>
+            <button onclick="addValue('5')">5</button>
+            <button onclick="addValue('6')">6</button>
+            <button onclick="addValue('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+
+            <button onclick="addValue('1')">1</button>
+            <button onclick="addValue('2')">2</button>
+            <button onclick="addValue('3')">3</button>
+            <button onclick="addValue('0')">0</button>
+            <button onclick="addValue('!')">x!</button>
+
+        </div>
+
+        <div id="history" class="history"></div>
+
+    </section>
+
+
+    <!-- =========================================
+         FORMULA CALCULATOR
+    ========================================== -->
+
+    <section id="formula" class="section hidden">
+
+        <h2>🧮 EE Formula Calculator</h2>
+
+        <select id="formulaSelect" onchange="loadFormula()">
+
+            <option value="">-- Select Formula --</option>
+
+            <option value="ohm">
+                Ohm's Law — V = IR
+            </option>
+
+            <option value="power">
+                Power — P = VI
+            </option>
+
+            <option value="resistance">
+                Resistance — R = V/I
+            </option>
+
+            <option value="current">
+                Current — I = V/R
+            </option>
+
+            <option value="energy">
+                Energy — E = Pt
+            </option>
+
+            <option value="charge">
+                Charge — Q = It
+            </option>
+
+            <option value="xl">
+                Inductive Reactance — XL = 2πfL
+            </option>
+
+            <option value="xc">
+                Capacitive Reactance — XC = 1/(2πfC)
+            </option>
+
+            <option value="resonance">
+                Resonant Frequency — f₀ = 1/(2π√LC)
+            </option>
+
+            <option value="rms">
+                RMS Voltage — Vrms = Vp/√2
+            </option>
+
+            <option value="threephase">
+                3-Phase Power — P = √3VIcosφ
+            </option>
+
+            <option value="efficiency">
+                Efficiency — η = Output/Input ×100
+            </option>
+
+            <option value="slip">
+                Motor Slip — s=(Ns-N)/Ns
+            </option>
+
+            <option value="syncspeed">
+                Synchronous Speed — Ns=120f/P
+            </option>
+
+            <option value="transformer">
+                Transformer — V1/V2=N1/N2
+            </option>
+
+            <option value="torque">
+                Torque — T=P/ω
+            </option>
+
+        </select>
+
+
+        <div id="formulaInputs"></div>
+
+
+        <button class="calculate-btn"
+                onclick="calculateFormula()">
+            Calculate
+        </button>
+
+        <button class="clear-btn"
+                onclick="clearFormula()">
+            Clear
+        </button>
+
+
+        <div id="formulaResult" class="result">
+            Select a formula to begin.
+        </div>
+
+
+        <!-- OHM'S LAW QUICK CALCULATOR -->
+
+        <div class="ohm-box">
+
+            <h2>⚡ Ohm's Law</h2>
+
+            <div class="equation">
+                V = I × R
+            </div>
+
+            <div class="ohm-grid">
+
+                <input
+                    id="ohmV"
+                    type="number"
+                    step="any"
+                    placeholder="Voltage V"
+                >
+
+                <input
+                    id="ohmI"
+                    type="number"
+                    step="any"
+                    placeholder="Current A"
+                >
+
+                <input
+                    id="ohmR"
+                    type="number"
+                    step="any"
+                    placeholder="Resistance Ω"
+                >
+
+            </div>
+
+            <button class="calculate-btn"
+                    onclick="calculateOhm()">
+                Calculate Ohm's Law
+            </button>
+
+            <div id="ohmResult" class="result">
+                Enter any two values.
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+          </html>
