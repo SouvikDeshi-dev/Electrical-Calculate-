@@ -63,8 +63,6 @@ const display =
 function addValue(value){
 
     display.value += value;
-
-    display.focus();
 }
 
 
